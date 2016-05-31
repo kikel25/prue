@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
@@ -149,7 +149,7 @@ $("#btnActualizar").tap(function modif(){
   $("#btnBusqNC").tap(functio busq(){
 	var nc=$("#txtNC").val();
 	$.ajax({
-		type:"POST",url:"buscarNC.php",
+		type:"POST",url:"http://moviles2016.esy.es/buscarNC.php",
 		data:"NC="+nc,
 		success: function(datos){
 			var reg=$.parseJSON(datos);
@@ -174,7 +174,7 @@ $("#btnActualizar").tap(function modif(){
 		});
 });
   ///////////////
-}
+
 
 function uploadPhoto(foto) {
 	//alert("si entro: "+foto);
