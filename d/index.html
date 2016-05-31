@@ -235,10 +235,13 @@ text-align:center;
 	<h1>Menu Principal</h1>
       </div>
       <div data-role="content" >
-          <input type="button" value="Registrar servicios" id="Registrar" />
-          <input type="button" value="Consultar servicios" id="Consultar" />
-          <input type="button" value="Actualizar servicios" id="Actualizar" />
-          <input type="button" value="Eliminiar servicios" id="eliminar" />
+  <ul data-role="listview">
+	    <li data-role="list-divider" style="text-align:center;">Operaciones</li>
+	    <li><a href="#Registrar">Registrar servicios</a></li>
+	    <li><a href="#Consultar">Consultar servicios</a></li>
+	    <li><a href="#Actualizar">Actualizar servicios</a></li>
+	    <li><a href="#eliminar">Eliminiar servicios</a></li>
+	  </ul>
 	 
       </div>
       <div data-role="footer" data-position="fixed" style="text-align:center;">
