@@ -117,7 +117,63 @@ $("#btnConsultar3").tap(function consul(){
 
 });
 ///////////////////////////////
-  
+
+$("#btnActualizar").tap(function modif(){
+
+               	      var nom=$("#Nombre").val();
+		      var dir=$("#Direccion").val();
+                      var rfc=$("#Rfc").val();
+		      var tel=$("#Telefono").val();
+                      var clasif=$("#selecClasif").val();
+		      var lat=$("#obtLatitud").val();
+		      var lon=$("#obtLongitud").val();
+		
+		if(nombre==""||dir=="" || rfc==""){
+			alert("Introduzca los datos requeridos en todos los campos");
+		}else{
+			//alert("Se enviaran los datos: Nombre: "+nom+" Apellidos:"+aps+" Número de Control:"+nc+" Edad:"+Edad);
+			$.ajax({
+				type:"POST",
+			 url:"http://moviles2016.esy.es/Actualizar.php",
+       data:"Nombre="+nom+"&Direccion="+dir+"&rfc="+rfc+"&tel="+tel+"&selecClasif="+clasif+"&obtLatitud="+lat+"&obtLongitud="+lon,
+				success: function(datos){
+                                    alert("Respuesta: "+datos);
+                                }
+
+			});
+			
+			
+		}
+	});
+  //////////////////////
+  $("#btnBusqNC").tap(functio busq(){
+	var nc=$("#txtNC").val();
+	$.ajax({
+		type:"POST",url:"buscarNC.php",
+		data:"NC="+nc,
+		success: function(datos){
+			var reg=$.parseJSON(datos);
+			var contenedor=$("#resBusqNC");
+                        contenedor.html('<input type="text"  id="Nombre" disabled="true" style=" background:url(imagenes/tapis2.jpg);"><br>');
+                        contenedor.append('<input type="text" id="Direccion" style=" background:url(imagenes/tapis2.jpg);"><br>');
+                        contenedor.append('<input type="text" id="RFC" style=" background:url(imagenes/tapis2.jpg);"><br>');
+                        contenedor.append('<input type="text" id="Telefono" disabled="true" style=" background:url(imagenes/tapis2.jpg);"><br>');
+                        contenedor.append('<input type="text" id="selecClasif" style=" background:url(imagenes/tapis2.jpg);"><br>');
+                        var idMod=$("#Nombre");
+                        idMod.val(reg[0].Nombre)
+                        var NombMod=$("#Direccion");
+                        NombMod.val(reg[0].Direccion);
+                        var ApsMod=("#RFC");
+                        ApsMod.val(reg[0].RFC);
+                        var NCMod=$("#Telefono");
+                        NCMod.val(reg[0].Telefono);
+                        var EdadMod=$("#selecClassif");
+                        EdadMod.val(reg[0].Casificacion);
+                        
+			}
+		});
+});
+  ///////////////
 }
 
 function uploadPhoto(foto) {
@@ -242,7 +298,7 @@ text-align:center;
 	    <li><a href="#Actualizar">Actualizar servicios</a></li>
 	    <li><a href="#eliminar">Eliminiar servicios</a></li>
 	  </ul>
-	 
+	 <input type="button" value="Registrar servicios" id="#Registrar" />
       </div>
       <div data-role="footer" data-position="fixed" style="text-align:center;">
 	<div data-role="controlgroup" data-type="horizontal">
@@ -295,6 +351,24 @@ text-align:center;
      	   <p>Pie de la aplicación</p>
 	</div>
      </div>
+
+<div data-role="page" id="Actualizar" style=" background:url(img/tapis1.jpg);">
+	<div data-role="header">
+		<h1>Actualizarr</h1>
+	</div>
+	<div data-role="content">				
+		<input type="button" value="Consultar todo" id="btnConsultar2" />
+		<div id="datos2"></div>	
+		<input type="text" placeholder="escribe el numero del negocio" id="nombreNegocio"/>
+		<input type="button" value="Buscar" id="btnBusqNC" />	
+		<div id="resBusqNC"></div>
+               <input type="button" id="btnActualiza" value="Actualizar datos"/>
+               
+  	</div>
+	<div data-role="footer">
+     	   <p>Pie de la aplicación</p>
+	</div>
+</div>
 
 <div data-role="page" id="Consultar" data-url="map-page">
       <div data-role="header" data-position="fixed">
